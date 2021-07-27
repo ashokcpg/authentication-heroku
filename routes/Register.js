@@ -1,14 +1,17 @@
+const { urlencoded } = require("express");
 const express = require("express");
 const router = express.Router();
 const app = express();
+const path = require("path");
 
 app
 	.route("/")
 	.get((req, res) => {
-		res.status(200).send("<h2>Get Request to Show User</h2>");
+		// res.status(200).json({ info: "Register Page..." });
+		res.sendFile(path.resolve(__dirname + "/../views/register.html"));
 	})
 	.post((req, res) => {
-		res.status(200).send("<h2>Post Request to Show Users,</h2>");
+		console.log(req.body.name, req.body.email, req.body.password);
 	});
 
 // router.get("/", (req, res) => {

@@ -2,8 +2,11 @@ const db = require("./dbconfig.js");
 const express = require("express");
 const app = express();
 
-const showUsers = require("./routes/showUser.js");
-const addUsers = require("./routes/addUser.js");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const Register = require("./routes/Register.js");
+const Login = require("./routes/Login.js");
 
 app.listen(process.env.PORT || 3000, async () => {
 	db.select("*")
@@ -20,7 +23,8 @@ app.listen(process.env.PORT || 3000, async () => {
 // Setting endpoints
 app.use(express.json());
 app.get("/", (req, res) => {
-	res.status(200).send("<h1>Welcome Home... </h1>");
+	res.sendFile(__dirname + "/views/home.html");
 });
-app.use("/show", showUsers);
-app.use("/add", addUsers);
+
+app.use("/register", Register);
+app.use("/login", Login);
