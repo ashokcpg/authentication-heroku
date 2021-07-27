@@ -5,7 +5,7 @@ const app = express();
 const showUsers = require("./routes/showUser");
 const addUsers = require("./routes/addUser");
 
-app.listen(3000, async () => {
+app.listen(process.env.PORT || 3000, async () => {
 	db.select("*")
 		.from("cred")
 		.then((data) => {

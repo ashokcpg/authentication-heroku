@@ -12,7 +12,6 @@
   "devDependencies": {
     "nodemon": "^2.0.12"
   },
-
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
