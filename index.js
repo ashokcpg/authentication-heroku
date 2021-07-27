@@ -19,8 +19,10 @@ app.listen(process.env.PORT || 3000, async () => {
 
 // Setting endpoints
 app.use(express.json());
-app.use("/", (req, res) => {
-	res.status(200).send("<h1>Welcome Home </h1>");
+app.get("/show/*", (req, res) => {
+	res.status(200).send("<h2>Inside Show</h2>");
 });
-app.use("/show", showUsers);
-app.use("/add", addUsers);
+app.use("/", (req, res) => {
+	res.status(200).send("<h1>Welcome Home... </h1>");
+});
+app.get("/add", addUsers);
