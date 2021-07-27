@@ -2,8 +2,8 @@ const db = require("./dbconfig.js");
 const express = require("express");
 const app = express();
 
-const showUsers = require("./routes/showUser");
-const addUsers = require("./routes/addUser");
+const showUsers = require("./routes/showUser.js");
+const addUsers = require("./routes/addUser.js");
 
 app.listen(process.env.PORT || 3000, async () => {
 	db.select("*")
@@ -19,10 +19,8 @@ app.listen(process.env.PORT || 3000, async () => {
 
 // Setting endpoints
 app.use(express.json());
-app.get("/show/*", (req, res) => {
-	res.status(200).send("<h2>Inside Show</h2>");
-});
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
 	res.status(200).send("<h1>Welcome Home... </h1>");
 });
-app.get("/add", addUsers);
+app.use("/show", showUsers);
+app.use("/add", addUsers);
